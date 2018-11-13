@@ -15,12 +15,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        EditText edUserid = findViewById(R.id.ed_userid);
+        EditText ed_Userid = findViewById(R.id.ed_userid);
                 String userid = getSharedPreferences("atm",MODE_PRIVATE)
                         .getString("USERID","");
-                edUserid.setText(userid);
-        
+                ed_Userid.setText(userid);
     }
     public void login(View view) {
         String userid = ((EditText)findViewById(R.id.ed_userid)).getText().toString();

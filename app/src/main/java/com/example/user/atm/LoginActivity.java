@@ -15,6 +15,12 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        EditText edUserid = findViewById(R.id.ed_userid);
+                String userid = getSharedPreferences("atm",MODE_PRIVATE)
+                        .getString("USERID","");
+                edUserid.setText(userid);
+        
     }
     public void login(View view) {
         String userid = ((EditText)findViewById(R.id.ed_userid)).getText().toString();
@@ -24,6 +30,10 @@ public class LoginActivity extends AppCompatActivity {
             getIntent().putExtra("Login_USERID",userid);
             getIntent().putExtra("Login_PASSWORD",passwd);
             setResult(RESULT_OK,getIntent());
+            getSharedPreferences("USERID",MODE_PRIVATE)
+                    .edit()
+                    .putString("USERID",userid)
+                    .apply();
             finish();
         }else {
             new AlertDialog.Builder(this)
